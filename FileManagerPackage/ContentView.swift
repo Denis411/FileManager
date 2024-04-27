@@ -8,19 +8,17 @@ struct ContentView: View {
             
             Text(viewModel.actionDescription)
             
-            TextField(text: $viewModel.text) {
-                Text("Enter text to save")
-            }
-            .padding()
-            .background(Color.green)
-            .cornerRadius(10)
-            .padding()
+            TextField(.init("Enter text to save"), text: $viewModel.text)
+                .padding()
+                .background(Color.green)
+                .cornerRadius(10)
+                .padding()
             
             Button {
                 viewModel.saveData()
             } label: {
                 Text("Save data")
-                    .foregroundStyle(.background)
+                    .foregroundColor(.white)
                     .padding()
                     .background(Color.blue)
                     .cornerRadius(5)
@@ -30,7 +28,7 @@ struct ContentView: View {
                 viewModel.resaveData()
             } label: {
                 Text("Resave data")
-                    .foregroundStyle(.background)
+                    .foregroundColor(.white)
                     .padding()
                     .background(Color.blue)
                     .cornerRadius(5)
@@ -40,7 +38,7 @@ struct ContentView: View {
                 viewModel.deleteData()
             } label: {
                 Text("Delete data")
-                    .foregroundStyle(.background)
+                    .foregroundColor(.white)
                     .padding()
                     .background(Color.blue)
                     .cornerRadius(5)
