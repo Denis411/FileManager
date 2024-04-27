@@ -1,31 +1,4 @@
-//
-//  ContentView.swift
-//  FileManagerPackage
-//
-//  Created by FIX PRICE on 4/27/24.
-//
-
 import SwiftUI
-
-final class ViewModel: ObservableObject {
-    @Published private(set) var actionDescription: String = "No actions taken"
-    @Published var text: String = ""
-    
-    func saveData() {
-        text = ""
-        actionDescription = "Saved"
-    }
-    
-    func resaveData() {
-        text = ""
-        actionDescription = "Resaved"
-    }
-    
-    func deleteData() {
-        text = ""
-        actionDescription = "Deleted"
-    }
-}
 
 struct ContentView: View {
     @StateObject var viewModel = ViewModel()

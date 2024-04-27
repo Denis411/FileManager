@@ -11,6 +11,7 @@
 		4B6C474C2BDCCB5E0091106A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C474B2BDCCB5E0091106A /* ContentView.swift */; };
 		4B6C474E2BDCCB5F0091106A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B6C474D2BDCCB5F0091106A /* Assets.xcassets */; };
 		4B6C47512BDCCB5F0091106A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B6C47502BDCCB5F0091106A /* Preview Assets.xcassets */; };
+		4B6C47582BDCD05C0091106A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C47572BDCD05C0091106A /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		4B6C474B2BDCCB5E0091106A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4B6C474D2BDCCB5F0091106A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B6C47502BDCCB5F0091106A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4B6C47572BDCD05C0091106A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 		4B6C47482BDCCB5E0091106A /* FileManagerPackage */ = {
 			isa = PBXGroup;
 			children = (
+				4B6C47572BDCD05C0091106A /* ViewModel.swift */,
 				4B6C47492BDCCB5E0091106A /* FileManagerPackageApp.swift */,
 				4B6C474B2BDCCB5E0091106A /* ContentView.swift */,
 				4B6C474D2BDCCB5F0091106A /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B6C474C2BDCCB5E0091106A /* ContentView.swift in Sources */,
+				4B6C47582BDCD05C0091106A /* ViewModel.swift in Sources */,
 				4B6C474A2BDCCB5E0091106A /* FileManagerPackageApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
