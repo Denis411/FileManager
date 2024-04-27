@@ -6,9 +6,23 @@ final class ViewModel: ObservableObject {
     @Published var text: String = ""
     @Published var fileNameWithoutExtension: String = ""
     
+    private let fileManager = FileManagerSPM()
+    
     func saveData() {
+        let data = Data(text.utf8)
+        do {
+            try fileManager.saveInAppDirectory(
+                data: data,
+                with: fileNameWithoutExtension,
+                with: ".txt"
+            )
+            actionDescription = "Saved"
+        } catch {
+            actionDescription = error.localizedDescription
+        }
+        
         text = ""
-        actionDescription = "Saved"
+        fileNameWithoutExtension = ""
     }
     
     func resaveData() {
