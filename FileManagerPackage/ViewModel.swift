@@ -1,4 +1,5 @@
 import Foundation
+import FileManagerSPM
 
 final class ViewModel: ObservableObject {
     @Published private(set) var actionDescription: String = "No actions taken"

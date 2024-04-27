@@ -21,6 +21,7 @@
 		4B6C474D2BDCCB5F0091106A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B6C47502BDCCB5F0091106A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4B6C47572BDCD05C0091106A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		4B6C47592BDCD37F0091106A /* FileManagerSPM */ = {isa = PBXFileReference; lastKnownFileType = text; path = FileManagerSPM; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +54,7 @@
 		4B6C47482BDCCB5E0091106A /* FileManagerPackage */ = {
 			isa = PBXGroup;
 			children = (
+				4B6C47592BDCD37F0091106A /* FileManagerSPM */,
 				4B6C47572BDCD05C0091106A /* ViewModel.swift */,
 				4B6C47492BDCCB5E0091106A /* FileManagerPackageApp.swift */,
 				4B6C474B2BDCCB5E0091106A /* ContentView.swift */,
