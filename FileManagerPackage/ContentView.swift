@@ -4,45 +4,41 @@ struct ContentView: View {
     @StateObject var viewModel = ViewModel()
     
     var body: some View {
-        VStack {
-            
+        VStack(spacing: 5){
             Text(viewModel.actionDescription)
             
-            TextField(.init("Enter text to save"), text: $viewModel.text)
-                .padding()
-                .background(Color.green)
-                .cornerRadius(10)
-                .padding()
-            
-            Button {
-                viewModel.saveData()
-            } label: {
-                Text("Save data")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(5)
+            Group {
+                TextField(.init("Enter text to save"), text: $viewModel.text)
+                TextField(.init("File name without extension"), text: $viewModel.fileNameWithoutExtension)
             }
+            .padding()
+            .background(Color.green)
+            .cornerRadius(10)
+            .padding(.horizontal, 10)
             
-            Button {
-                viewModel.resaveData()
-            } label: {
-                Text("Resave data")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(5)
+            Group {
+                Button {
+                    viewModel.saveData()
+                } label: {
+                    Text("Save data")
+                }
+                
+                Button {
+                    viewModel.resaveData()
+                } label: {
+                    Text("Resave data")
+                }
+                
+                Button {
+                    viewModel.deleteData()
+                } label: {
+                    Text("Delete data")
+                }
             }
-            
-            Button {
-                viewModel.deleteData()
-            } label: {
-                Text("Delete data")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(5)
-            }
+            .foregroundColor(.white)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(5)
         }
     }
 }

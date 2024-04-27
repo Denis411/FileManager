@@ -3,6 +3,7 @@ import Foundation
 final class ViewModel: ObservableObject {
     @Published private(set) var actionDescription: String = "No actions taken"
     @Published var text: String = ""
+    @Published var fileNameWithoutExtension: String = ""
     
     func saveData() {
         text = ""
