@@ -46,6 +46,28 @@ final class FileManagerSPMTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testSavingWithInvalidExtension() async {
+        // give
+        let shouldOverwriteFile = false
+        let invalidFileExtension = ".json"
+        // when
+        do {
+            try await package.saveInAppDirectory(
+                data: data,
+                fileName: fileName,
+                fileExtension: invalidFileExtension,
+                shouldOverwriteFile: shouldOverwriteFile
+            )
+        } catch {
+            // then
+            guard error as? FileManagerErrors == FileManagerErrors.fileExtensionFirstCharacterIsDot else {
+                XCTFail()
+                return
+            }
+        }
+    }
+
 }
 
 extension FileManagerSPMTests {
