@@ -27,6 +27,7 @@ final class FileManagerSPMTests: XCTestCase {
                 fileExtension: fileExtension,
                 shouldOverwriteFile: shouldOverwriteFile
             )
+            // then success
         } catch {
             // then 1
             print(error.localizedDescription)
@@ -90,7 +91,7 @@ final class FileManagerSPMTests: XCTestCase {
         }
     }
     
-    func testDoubleSavingToTheSameDirectory() async {
+    func testDoubleSavingToTheSameDirectoryWithoutOverwriting() async {
         // give
         let invalidFileExtension = "json"
         let shouldOverwriteFile = false
@@ -115,6 +116,32 @@ final class FileManagerSPMTests: XCTestCase {
                 XCTFail()
                 return
             }
+        }
+    }
+    
+    func testOverwritingFilesWithTheSameName() async {
+        // give
+        let invalidFileExtension = "json"
+        let shouldOverwriteFile = true
+        // when
+        do {
+            try await package.saveInAppDirectory(
+                data: data,
+                fileName: fileName,
+                fileExtension: invalidFileExtension,
+                shouldOverwriteFile: shouldOverwriteFile
+            )
+            
+            try await package.saveInAppDirectory(
+                data: data,
+                fileName: fileName,
+                fileExtension: invalidFileExtension,
+                shouldOverwriteFile: shouldOverwriteFile
+            )
+            // then success
+        } catch {
+            print(error.localizedDescription)
+            XCTFail()
         }
     }
 
