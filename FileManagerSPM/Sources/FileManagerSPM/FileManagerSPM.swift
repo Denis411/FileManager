@@ -3,7 +3,7 @@
 import Foundation
 
 public protocol FileManagerSPMProtocol {
-    func saveInAppDirectory(data: Data, with fileName: FileName, with fileExtension: FileExtension) throws
+    func saveInAppDirectory(data: Data, with fileName: FileName, with fileExtension: FileExtension, shouldOverwriteFile: Bool) throws
     func save(data: Data, to: URL?) async throws
 }
 
@@ -17,7 +17,12 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
     
     public init() { }
     
-    public func saveInAppDirectory(data: Data, with fileName: FileName, with fileExtension: FileExtension) throws {
+    public func saveInAppDirectory(
+        data: Data,
+        with fileName: FileName,
+        with fileExtension: FileExtension,
+        shouldOverwriteFile: Bool
+    ) throws {
         let fileURL = FileManager.appDirectory
             .appendingPathComponent(fileName)
             .appendingPathExtension(fileExtension)
@@ -25,7 +30,7 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
         do {
             let doesFileExist = FileManager.default.fileExists(atPath: fileURL.path)
             
-            guard !doesFileExist else {
+            if doesFileExist && !shouldOverwriteFile {
                 throw FileManagerErrors.fileAlreadyExists
             }
             

@@ -16,6 +16,17 @@ struct ContentView: View {
             .cornerRadius(10)
             .padding(.horizontal, 10)
             
+            Toggle(isOn: $viewModel.shouldOverwriteExistingFile) {
+                Text("Should overwrite existing file")
+                    .font(.system(size: 10))
+            }
+            .toggleStyle(.switch)
+            .padding(.horizontal)
+            .padding(.vertical, 5)
+            .background(Color.gray.opacity(0.5))
+            .cornerRadius(10)
+            .padding(.horizontal, 10)
+            
             Group {
                 Button {
                     viewModel.saveData()

@@ -5,6 +5,7 @@ final class ViewModel: ObservableObject {
     @Published private(set) var actionDescription: String = "No actions taken"
     @Published var text: String = ""
     @Published var fileNameWithoutExtension: String = ""
+    @Published var shouldOverwriteExistingFile: Bool = false
     
     private let fileManager = FileManagerSPM()
     
@@ -14,7 +15,8 @@ final class ViewModel: ObservableObject {
             try fileManager.saveInAppDirectory(
                 data: data,
                 with: fileNameWithoutExtension,
-                with: ".txt"
+                with: ".txt",
+                shouldOverwriteFile: shouldOverwriteExistingFile
             )
             actionDescription = "Saved"
         } catch {
