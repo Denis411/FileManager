@@ -7,15 +7,15 @@ final class ViewModel: ObservableObject {
     @Published var fileNameWithoutExtension: String = ""
     @Published var shouldOverwriteExistingFile: Bool = false
     
-    private let fileManager = FileManagerSPM()
+    private let fileManager: FileManagerSPMProtocol = FileManagerSPM()
     
     func saveData() {
         let data = Data(text.utf8)
         do {
             try fileManager.saveInAppDirectory(
                 data: data,
-                with: fileNameWithoutExtension,
-                with: "txt",
+                fileName: fileNameWithoutExtension,
+                fileExtension: "txt",
                 shouldOverwriteFile: shouldOverwriteExistingFile
             )
             actionDescription = "Saved"
