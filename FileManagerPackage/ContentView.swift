@@ -28,29 +28,15 @@ struct ContentView: View {
                 .cornerRadius(10)
                 .padding(.horizontal, 10)
                 
-                Group {
-                    Button {
-                        viewModel.saveData()
-                    } label: {
-                        Text("Save data")
-                    }
-                    
-                    Button {
-                        viewModel.resaveData()
-                    } label: {
-                        Text("Resave data")
-                    }
-                    
-                    Button {
-                        viewModel.deleteData()
-                    } label: {
-                        Text("Delete data")
-                    }
+                Button {
+                    viewModel.saveData()
+                } label: {
+                    Text("Save data")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(5)
                 }
-                .foregroundColor(.white)
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(5)
             }
         }
     }

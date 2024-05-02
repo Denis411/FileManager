@@ -29,14 +29,4 @@ final class ViewModel: ObservableObject {
             fileNameWithoutExtension = ""
         }
     }
-    
-    func resaveData() {
-        text = ""
-        actionDescription = "Resaved"
-    }
-    
-    func deleteData() {
-        text = ""
-        actionDescription = "Deleted"
-    }
 }
