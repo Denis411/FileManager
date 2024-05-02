@@ -23,7 +23,14 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
         with fileExtension: FileExtension,
         shouldOverwriteFile: Bool
     ) throws {
-        let fileURL = FileManager.appDirectory
+        let appDirectory = try FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        )
+        
+        let fileURL = appDirectory
             .appendingPathComponent(fileName)
             .appendingPathExtension(fileExtension)
         
@@ -34,8 +41,9 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
                 throw FileManagerErrors.fileAlreadyExists
             }
             
+//            try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: false, attributes: nil)
             FileManager.default.createFile(atPath: fileURL.path, contents: data)
-            try data.write(to: fileURL)
+//            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
             
         } catch {
             throw error
@@ -62,7 +70,7 @@ extension FileManagerSPM {
 }
 
 extension FileManager {
-    static let appDirectory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+//    static let appDirectory = FileManager.default.url(for: .documentationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
     
     static func doseFileExist(at url: URL, isDirectory: ObjCBool) -> Bool {
         FileManager.default.fileExists(atPath: url.path)
