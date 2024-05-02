@@ -9,5 +9,5 @@ public protocol FileManagerSPMProtocol {
     /// - Parameter fileName: A pure(without extension) name of the file that is supposed to be saved
     /// - Parameter fileExtension: A file extension, should not contain a dot (aka ".")
     /// - Parameter shouldOverwriteFile: Defines whether an existing file with the same name and extension can be overwritten
-    func saveInAppDirectory(data: Data, fileName: FileName, fileExtension: FileExtension, shouldOverwriteFile: Bool) throws
+    func saveInAppDirectory(data: Data, fileName: FileName, fileExtension: FileExtension, shouldOverwriteFile: Bool) async throws
 }
