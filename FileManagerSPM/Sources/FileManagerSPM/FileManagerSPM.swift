@@ -4,7 +4,6 @@ import Foundation
 
 public protocol FileManagerSPMProtocol {
     func saveInAppDirectory(data: Data, with fileName: FileName, with fileExtension: FileExtension, shouldOverwriteFile: Bool) throws
-    func save(data: Data, to: URL?) async throws
 }
 
 //UIFileSharingEnabled(Application supports iTunes file sharing) and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
@@ -23,6 +22,10 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
         with fileExtension: FileExtension,
         shouldOverwriteFile: Bool
     ) throws {
+        guard !fileName.isEmpty else {
+            throw FileManagerErrors.fileWithoutName
+        }
+        
         let appDirectory = try FileManager.default.url(
             for: .documentDirectory,
             in: .userDomainMask,
@@ -48,31 +51,5 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
         } catch {
             throw error
         }
-    }
-    
-    public func save(data: Data, to url: URL?) async throws {
-        guard let url else {
-            throw URLError(.badURL)
-        }
-        
-        do {
-            try data.write(to: url)
-        } catch {
-            throw error
-        }
-    }
-}
-
-extension FileManagerSPM {
-    private func createAppDirectoryIfNeeded() {
-        
-    }
-}
-
-extension FileManager {
-//    static let appDirectory = FileManager.default.url(for: .documentationDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-    
-    static func doseFileExist(at url: URL, isDirectory: ObjCBool) -> Bool {
-        FileManager.default.fileExists(atPath: url.path)
     }
 }
