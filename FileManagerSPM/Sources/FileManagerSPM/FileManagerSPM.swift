@@ -4,9 +4,9 @@ import Foundation
 
 // UIFileSharingEnabled(Application supports iTunes file sharing) and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
 // to let a user see the directory of your app
-public final class FileManagerSPM: FileManagerSPMProtocol {
+final class FileManagerSPM: FileManagerSPMProtocol {
     
-    public init() { }
+    init() { }
     
     public func saveInAppDirectory(
         data: Data,

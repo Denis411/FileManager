@@ -7,7 +7,7 @@ final class ViewModel: ObservableObject {
     @Published var fileNameWithoutExtension: String = ""
     @Published var shouldOverwriteExistingFile: Bool = false
     
-    private let fileManager: FileManagerSPMProtocol = FileManagerSPM()
+    private let fileManager: FileManagerSPMProtocol = FileManagerAssembly().create()
     
     func saveData() {
         let data = Data(text.utf8)
