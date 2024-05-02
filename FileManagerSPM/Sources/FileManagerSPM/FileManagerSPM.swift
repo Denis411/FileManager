@@ -2,21 +2,8 @@
 // https://docs.swift.org/swift-book
 import Foundation
 
-public protocol FileManagerSPMProtocol {
-    /// The method saves data to a document directory
-    /// - Parameter data: A piece of data to be saved.
-    /// - Parameter fileName: A pure(without extension) name of the file that is supposed to be saved
-    /// - Parameter fileExtension: A file extension, should not contain a dot (aka ".")
-    /// - Parameter shouldOverwriteFile: Defines whether an existing file with the same name and extension can be overwritten
-    func saveInAppDirectory(data: Data, fileName: FileName, fileExtension: FileExtension, shouldOverwriteFile: Bool) throws
-}
-
-//UIFileSharingEnabled(Application supports iTunes file sharing) and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
+// UIFileSharingEnabled(Application supports iTunes file sharing) and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
 // to let a user see the directory of your app
-
-public typealias FileName = String
-public typealias FileExtension = String
-
 public final class FileManagerSPM: FileManagerSPMProtocol {
     
     public init() { }
