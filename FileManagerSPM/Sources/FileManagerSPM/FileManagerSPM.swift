@@ -7,7 +7,7 @@ public protocol FileManagerSPMProtocol {
     func save(data: Data, to: URL?) async throws
 }
 
-//UIFileSharingEnabled and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
+//UIFileSharingEnabled(Application supports iTunes file sharing) and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
 // to let a user see the directory of your app
 
 public typealias FileName = String
@@ -30,6 +30,7 @@ public final class FileManagerSPM: FileManagerSPMProtocol {
             }
             
             FileManager.default.createFile(atPath: fileURL.path, contents: data)
+            try data.write(to: fileURL)
             
         } catch {
             throw error
