@@ -15,7 +15,7 @@ extension FileManagerErrors: LocalizedError {
         case .fileWithoutName:
             return "File was not given a name"
         case .fileWithoutExtension:
-            return "File must have an extensnio"
+            return "File must have an extension"
         case .fileExtensionFirstCharacterIsDot:
             return "Remove a dot at the beginning of extension"
         }
