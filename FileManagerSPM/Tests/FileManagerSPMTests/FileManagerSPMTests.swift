@@ -67,6 +67,28 @@ final class FileManagerSPMTests: XCTestCase {
             }
         }
     }
+    
+    func testSavingWithoutName() async {
+        // give
+        let shouldOverwriteFile = false
+        let emptyFileName = ""
+        let invalidFileExtension = "json"
+        // when
+        do {
+            try await package.saveInAppDirectory(
+                data: data,
+                fileName: emptyFileName,
+                fileExtension: invalidFileExtension,
+                shouldOverwriteFile: shouldOverwriteFile
+            )
+        } catch {
+            // then
+            guard error as? FileManagerErrors == FileManagerErrors.fileWithoutName else {
+                XCTFail()
+                return
+            }
+        }
+    }
 
 }
 
