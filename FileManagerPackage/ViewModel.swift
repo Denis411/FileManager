@@ -15,7 +15,7 @@ final class ViewModel: ObservableObject {
             try fileManager.saveInAppDirectory(
                 data: data,
                 with: fileNameWithoutExtension,
-                with: ".txt",
+                with: "txt",
                 shouldOverwriteFile: shouldOverwriteExistingFile
             )
             actionDescription = "Saved"
