@@ -89,6 +89,34 @@ final class FileManagerSPMTests: XCTestCase {
             }
         }
     }
+    
+    func testDoubleSavingToTheSameDirectory() async {
+        // give
+        let invalidFileExtension = "json"
+        let shouldOverwriteFile = false
+        // when
+        do {
+            try await package.saveInAppDirectory(
+                data: data,
+                fileName: fileName,
+                fileExtension: invalidFileExtension,
+                shouldOverwriteFile: shouldOverwriteFile
+            )
+            
+            try await package.saveInAppDirectory(
+                data: data,
+                fileName: fileName,
+                fileExtension: invalidFileExtension,
+                shouldOverwriteFile: shouldOverwriteFile
+            )
+        } catch {
+            // then
+            guard error as? FileManagerErrors == FileManagerErrors.fileAlreadyExists else {
+                XCTFail()
+                return
+            }
+        }
+    }
 
 }
 
