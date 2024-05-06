@@ -1,10 +1,27 @@
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
 import Foundation
 
 // UIFileSharingEnabled(Application supports iTunes file sharing) and LSSupportsOpeningDocumentsInPlace must be set to "YES" in info.plist
 // to let a user see the directory of your app
-actor FileManagerSPM: FileManagerSPMProtocol {
+struct FileManagerSPM {
+    func createFileURL(fileName: FileName, fileExtension: FileExtension) throws -> URL {
+        let appDirectory = try FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        )
+
+        let fileURL = appDirectory
+            .appendingPathComponent(fileName)
+            .appendingPathExtension(fileExtension)
+
+        return fileURL
+    }
+}
+
+// MARK: - FileManagerSPMProtocol
+
+extension FileManagerSPM: FileManagerSPMProtocol {
     public func saveInAppDirectory(
         data: Data,
         fileName: FileName,
@@ -12,41 +29,29 @@ actor FileManagerSPM: FileManagerSPMProtocol {
         shouldOverwriteFile: Bool
     ) async throws {
         guard !fileName.isEmpty else {
-            throw FileManagerErrors.fileWithoutName
+            throw FileManagerError.fileWithoutName
         }
-        
         guard !fileExtension.isEmpty else {
-            throw FileManagerErrors.fileWithoutExtension
+            throw FileManagerError.fileWithoutExtension
         }
-        
         guard fileExtension.first != "." else {
-            throw FileManagerErrors.fileExtensionFirstCharacterIsDot
+            throw FileManagerError.fileExtensionFirstCharacterIsDot
         }
-        
-        let appDirectory = try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: false
-        )
-        
-        let fileURL = appDirectory
-            .appendingPathComponent(fileName)
-            .appendingPathExtension(fileExtension)
-        
-        do {
-            let doesFileExist = FileManager.default.fileExists(atPath: fileURL.path)
-            
-            if doesFileExist && !shouldOverwriteFile {
-                throw FileManagerErrors.fileAlreadyExists
-            }
-            
-//            try FileManager.default.createDirectory(atPath: fileURL.path, withIntermediateDirectories: false, attributes: nil)
-            FileManager.default.createFile(atPath: fileURL.path, contents: data)
-//            try data.write(to: fileURL, options: [.atomic, .completeFileProtection])
-            
-        } catch {
-            throw error
+
+        guard let fileURL = try? createFileURL(fileName: fileName, fileExtension: fileExtension) else {
+            throw FileManagerError.cannotCreateURL
+        }
+
+        let doesFileExist = FileManager.default.fileExists(atPath: fileURL.path)
+
+        if doesFileExist && !shouldOverwriteFile {
+            throw FileManagerError.fileAlreadyExists
+        }
+
+        let isFileSuccessfullyCreated = FileManager.default.createFile(atPath: fileURL.path, contents: data)
+
+        if !isFileSuccessfullyCreated {
+            throw FileManagerError.cannotCreateFile
         }
     }
 }
